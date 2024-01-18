@@ -1,0 +1,15 @@
+name: PR title check
+on:
+  pull_request:
+    branches: [ "main" ]
+    types: ["edited", "opened"]
+  workflow_dispatch:
+jobs:
+  titlecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Slashgear/action-check-pr-title@v4.3.0
+        with:
+          regexp: "(fix|feat).*"
+          helpMessage: "Example: 'feat: example of title'"
